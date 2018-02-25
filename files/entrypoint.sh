@@ -13,8 +13,7 @@ echo "INFO: Copying Config.php"
 cat /listenz/Config.php | sed "s|CRONTOKEN|${CRONTOKEN}|g" > /var/www/html/listenztracker/Config.php
 
 echo "INFO: Starting web server"
-/usr/sbin/apache2 -k start
-# TODO: fix web server configuration
+/usr/local/bin/apache2-foreground
 
 # TODO: Create a cronjob for yourdomain.com/run.php?t=<your random secret key>1 or use cli
 # via php run.php 1 Minute or less is recommended. Otherwise the authentication
