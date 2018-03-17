@@ -1,0 +1,24 @@
+# docker-compose for egoexpress/listenz
+
+version: "3.6"
+services:
+
+  listenz:
+    image: egoexpress/listenz:1.0
+    ports:
+      - "80:80"
+    networks:
+      - frontend
+    environment:
+      - SPOTIFY_KEY=spotifykey
+      - SPOTIFY_SECRET=spotifysecret
+      - LASTFM_KEY=lastfmkey
+      - LASTFM_SECRET=lastfmsecret
+    volumes:
+      - listenzdata:/listenz
+
+networks:
+  frontend:
+
+volumes:
+  listenzdata:

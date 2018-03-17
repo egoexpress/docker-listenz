@@ -18,7 +18,7 @@ WORKDIR /var/www/html
 RUN curl -o tracker.zip https://static.liste.nz/dl/tracker/${listenz_version}/listenztracker1.zip && \
   unzip tracker.zip && \
   rm tracker.zip && \
-  cd listenztracker && \
+  mv listenztracker/* . && \
   composer update
 
 RUN mkdir /listenz
@@ -31,3 +31,5 @@ RUN chmod 755 /docker/entrypoint.sh
 ENTRYPOINT ["/docker/entrypoint.sh"]
 
 EXPOSE 80
+
+# TODO: run composer and installation as non-root
