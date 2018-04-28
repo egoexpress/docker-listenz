@@ -4,10 +4,9 @@ ENV listenz_version="1.0"
 
 LABEL maintainer="bjoern-docker@innovention.de"
 LABEL version="{$listenz_version}"
-LABEL description="Web server with ListenzTracker script (liste.nz) \
-                   to scrobble Spotify data to Last.fm"
+LABEL description="Web server with ListenzTracker script (liste.nz) to scrobble Spotify data to Last.fm"
 
-# install composer
+# install unzip & composer
 RUN apt-get update && apt-get install -yq \
   unzip && \
   rm -rf /var/lib/apt/lists/* && \
@@ -30,6 +29,6 @@ COPY files/entrypoint.sh /docker/entrypoint.sh
 RUN chmod 755 /docker/entrypoint.sh
 ENTRYPOINT ["/docker/entrypoint.sh"]
 
-EXPOSE 80
+COPY default/Config.php /listenz/Config.php.sample
 
-# TODO: run composer and installation as non-root
+EXPOSE 80
